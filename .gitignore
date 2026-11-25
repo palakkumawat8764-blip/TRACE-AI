@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# Secrets & local config (never commit to GitHub)
+.env
+.streamlit/secrets.toml
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Generated indexes, builds & distribution archives
+*.faiss
+*.pkl
+*.zip
+dist/
+build/

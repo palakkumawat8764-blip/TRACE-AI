@@ -1,0 +1,20 @@
+2026-11-20 14:00:05 UTC [INFO] api-gateway: Health check passed (db_pool=18/100)
+2026-11-20 14:10:12 UTC [INFO] auth-service: Token signing key rotation check complete
+2026-11-20 14:20:03 UTC [INFO] api-gateway: Baseline traffic steady at 410 req/s
+2026-11-20 14:26:11 UTC [INFO] batch-scheduler: Triggered job nightly_analytics_sync manually by ops-deploy
+2026-11-20 14:26:45 UTC [WARN] analytics-worker: Opening bulk read cursor without connection timeout limit
+2026-11-20 14:27:30 UTC [WARN] db-proxy: Active connections reached 72/100 (threshold=70)
+2026-11-20 14:28:18 UTC [WARN] api-gateway: Upstream query latency exceeded 800ms on /v1/orders
+2026-11-20 14:29:04 UTC [ERROR] db-proxy: Active connections at 98/100; 14 requests queued waiting for DB slot
+2026-11-20 14:29:41 UTC [ERROR] api-gateway: ConnectionPoolExhausted while querying orders_db (wait_ms=2500)
+2026-11-20 14:30:12 UTC [CRITICAL] api-gateway: 504 Gateway Timeout on POST /v1/checkout (client_id=web-04)
+2026-11-20 14:30:55 UTC [ERROR] api-gateway: ConnectionPoolExhausted while querying orders_db (wait_ms=3400)
+2026-11-20 14:31:19 UTC [CRITICAL] api-gateway: Error rate exceeded 40% SLA threshold; circuit breaker half-open
+2026-11-20 14:32:07 UTC [CRITICAL] api-gateway: 504 Gateway Timeout on GET /v1/orders (db_pool=100/100)
+2026-11-20 14:33:14 UTC [ERROR] analytics-worker: Query stalled holding 52 idle-in-transaction connections
+2026-11-20 14:34:02 UTC [CRITICAL] api-gateway: 504 Gateway Timeout on POST /v1/checkout (db_pool=100/100)
+2026-11-20 14:35:25 UTC [WARN] ops-automation: Terminated stalled batch job nightly_analytics_sync (pid=4821)
+2026-11-20 14:36:10 UTC [INFO] db-proxy: Reclaimed 48 idle-in-transaction connections
+2026-11-20 14:37:05 UTC [INFO] ops-automation: Rolling restart of api-gateway worker pool completed
+2026-11-20 14:38:20 UTC [INFO] api-gateway: Latency returned to baseline (105ms, db_pool=24/100)
+2026-11-20 14:42:00 UTC [INFO] api-gateway: Circuit breaker closed; error rate 0.2%

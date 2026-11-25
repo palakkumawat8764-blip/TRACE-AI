@@ -1,0 +1,104 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R 9 0 R] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Length 927 >>
+stream
+BT
+/F1 11 Tf
+50 750 Td
+16 TL
+(TRACE AI Reference Manual - Page 1: Database Connection Pool Runbook) Tj
+T* (System: orders_db / db-proxy | Max Pool Size: 100 active connections) Tj
+T* (Warning Threshold: 70 active connections | Critical Threshold: 95 active connections) Tj
+T* () Tj
+T* (Symptom: ConnectionPoolExhausted or requests queued waiting for DB slot.) Tj
+T* (Root Causes:) Tj
+T* (1. Long-running analytics or batch jobs \(such as nightly_analytics_sync\) opening) Tj
+T* (   bulk read cursors without a statement or idle-in-transaction timeout.) Tj
+T* (2. Application workers holding idle-in-transaction connections during peak load.) Tj
+T* () Tj
+T* (Remediation Steps:) Tj
+T* (- Identify stalled queries holding idle-in-transaction connections in db-proxy.) Tj
+T* (- Terminate offending batch jobs during peak traffic hours.) Tj
+T* (- Verify db_pool_active drops below 30/100 after reclaiming leaked connections.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 926 >>
+stream
+BT
+/F1 11 Tf
+50 750 Td
+16 TL
+(TRACE AI Reference Manual - Page 2: API Gateway & 504 Timeout Runbook) Tj
+T* (System: api-gateway | Normal Latency: 70-120 ms | SLA Error Rate: < 1%) Tj
+T* (Alert Thresholds: latency_ms > 1000 ms \(WARN\), latency_ms > 2000 ms \(CRITICAL\)) Tj
+T* () Tj
+T* (Symptom: 504 Gateway Timeout on /v1/checkout or /v1/orders with error_rate > 10%.) Tj
+T* (Cascade Behavior:) Tj
+T* (- When db-proxy reaches 100/100 connections, api-gateway worker threads block) Tj
+T* (  waiting for database slots \(wait_ms > 2500\), driving CPU > 85% and latency > 3000ms.) Tj
+T* (- If error rate exceeds 40%, the circuit breaker enters half-open state.) Tj
+T* () Tj
+T* (Remediation Steps:) Tj
+T* (- Relieve upstream DB lock or pool saturation first.) Tj
+T* (- Perform a rolling restart of api-gateway worker pool to clear blocked threads.) Tj
+T* (- Confirm circuit breaker closes and latency returns below 150 ms.) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 743 >>
+stream
+BT
+/F1 11 Tf
+50 750 Td
+16 TL
+(TRACE AI Reference Manual - Page 3: Batch Governance & Recovery Checklist) Tj
+T* (Policy: Heavy batch jobs \(nightly_analytics_sync\) must only run 01:00-04:00 UTC.) Tj
+T* (Manual execution during daytime peak traffic requires SRE approval and a) Tj
+T* (read-replica connection string with max_connections=15.) Tj
+T* () Tj
+T* (Post-Incident Verification Checklist:) Tj
+T* (1. Confirm cpu_percent < 40% and memory_percent < 60% for 5 consecutive minutes.) Tj
+T* (2. Confirm error_rate returns below 0.005 \(0.5%\) across all endpoints.) Tj
+T* (3. Record incident timeline across CSV metrics, app logs, and ops tickets.) Tj
+T* (4. Add connection timeout guardrails to analytics-worker before re-running jobs.) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 8 0 R >>
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000127 00000 n 
+0000000197 00000 n 
+0000001175 00000 n 
+0000001301 00000 n 
+0000002278 00000 n 
+0000002404 00000 n 
+0000003198 00000 n 
+trailer
+<< /Size 10 /Root 1 0 R >>
+startxref
+3324
+%%EOF

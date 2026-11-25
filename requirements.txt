@@ -1,0 +1,20 @@
+# Core Web Dashboard & Visualization
+streamlit>=1.38.0
+plotly>=5.24.0
+
+# Data Processing & Anomaly Detection
+pandas>=2.2.0
+scikit-learn>=1.5.0
+
+# Document Parsing (PDF)
+pypdf>=5.0.0
+
+# RAG (Vector Store & Local TF-IDF/LSA Embeddings - lightweight & cloud-ready)
+faiss-cpu>=1.8.0
+
+# Configuration & Optional Gemini LLM API Integration
+python-dotenv>=1.0.1
+google-genai>=1.0.0
+
+# Optional: install only if you want neural embeddings with PyTorch + VC++ Runtime
+# sentence-transformers>=3.0.0

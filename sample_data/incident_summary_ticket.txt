@@ -1,0 +1,9 @@
+Incident Ticket: INC-2026-1120
+Severity: SEV-1
+Reported By: On-Call SRE
+
+Timeline Notes:
+- 2026-11-20 14:26:00 UTC: Developer manually triggered the "nightly_analytics_sync" batch job during peak afternoon traffic.
+- 2026-11-20 14:31:15 UTC: PagerDuty fired high error rate alert (504 Gateway Timeout spikes on /v1/checkout and /v1/orders).
+- 2026-11-20 14:35:25 UTC: On-call engineer identified 52 leaked/stalled connections held by analytics-worker and killed the batch job.
+- 2026-11-20 14:37:05 UTC: Restarted api-gateway workers; service recovered fully by 14:38:20 UTC.
